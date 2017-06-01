@@ -28,21 +28,23 @@ function deQuery($sql, $params = [])
         $db_statement= $db->prepare($sql);
         $db_statement->excute($params);
         }
-        catch(PDOException)
+        catch(PDOException){
+
+        };
 }
 
 
 function dbGetRows()
 {
-    global $db_statement}
-    }
+    global $db_statement;}
+    };
 
 
-function dbGetRow(){}
+function dbGetRow(){};
 
 
 
-function dbGetUserbyId(){}
+function dbGetUserbyId(){};
 
 
 
