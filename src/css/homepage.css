@@ -3,8 +3,26 @@
 }
 .fter{
     color: white;
-
-
-
-
 }
+#welkom{
+    text-align: center;
+}
+.thread{
+    text-align: center;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px;
+    margin-top: 5%;
+    z-index: -1;
+}
+.subject{
+    background-color:darkcyan;
+}
+
+.description{
+    text-align: center;
+    padding: 4px;
+}
+.created{
+    text-align: right;
+}
+

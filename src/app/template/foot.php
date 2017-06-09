@@ -1,6 +1,6 @@
 <footer class="navbar-fixed-bottom navbar-inverse fter" >
     <div class="container-fluid">
-        <copyright> test</copyright>
+        <copyright> Copyright</copyright>
         <section id="rechts">
             <li href="">disclaimer</li>
             <li href="">contact</li>
