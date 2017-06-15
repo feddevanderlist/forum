@@ -16,9 +16,9 @@
             <ul class="nav navbar-nav">
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ><a href="register.php">register </a></li>
-                <li><a href="login.php">login</a></li>
-                <li class="active"><a href="index.php">home<span class="sr-only">(current)</span></a></li>
+                <li ><a href="<?= url('forum/src/app/authentication/register.php')?>">register </a></li>
+                <li><a href="<?= url('forum/src/login.php')?>">login</a></li>
+                <li class="active"><a href="<?=url('forum/src/index.php')?>">home<span class="sr-only">(current)</span></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

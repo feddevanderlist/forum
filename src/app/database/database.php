@@ -3,7 +3,6 @@
 $db = null;
 $db_statement = null;
 
-
 function dbConnect()
     {
         global $db;
@@ -17,11 +16,13 @@ function dbConnect()
             $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     }
     catch (PDOException $error){
-        echo $error->getMessage();
+        $db = null;
+        return false;
+}
+return true;
+    }
 
-}};
-
-function deQuery($sql, $params=null)
+function dbQuery($sql, $params=[])
     {
     global $db, $db_statement;
     if ($db==null)
@@ -31,37 +32,62 @@ function deQuery($sql, $params=null)
         $db_statement->execute($params);
         }
         catch(PDOException $error){
-        echo $error->getMessage();
+        return false;
         };
+    return true;
 };
 
 
-function dbGetRows($table)
-{   //global $db;
+function dbGetRows()
+{
+    global $db_statement;
 
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "forum";
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username,$password);
+    if ($db_statement)
+        return $db_statement->fetchAll();
 
-    $sql = "SELECT * FROM $table";
-    $querry = $conn->prepare($sql);
-    $querry->execute();
-    global $data;
-    $data = null;
-    $data = $querry->fetchAll(PDO::FETCH_ASSOC);
+    return null;
+}
 
-};
+function dbGetRow()
+{
+    global $db_statement;
 
+    if($db_statement)
+        return $db_statement->fetch();
 
+    return null;
+}
 
+function dbCount()
+{
+    global $db_statement;
 
-//function dbGetRow(){};
+    if($db_statement)
+        return $db_statement->rowCount();
 
+    return 0;
+}
 
+function dbGetUserById($user_id)
+{
+    if(dbQuery("SELECT * FROM users WHERE id = :id", [':id' => $user_id]))
+        return dbGetRow();
 
-//function dbGetUserbyId(){};
+    return null;
+}
 
+function dbGetThemeById($theme_id)
+{
+    if(dbQuery("SELECT * FROM themes WHERE id = :id", [':id' => $theme_id]))
+        return dbGetRow();
 
+    return null;
+}
 
+function getTopicById($topic_id)
+{
+    if(dbQuery("SELECT * FROM topics WHERE id = :id", [':id' => $topic_id]))
+        return dbGetRow();
+
+    return null;
+}

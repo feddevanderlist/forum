@@ -1,13 +1,13 @@
 <?php
-
-include_once('app/template/head.php');//voeg de header to
-include_once('app/template/navbar.php');
+include_once ('../helpers/helper_functions.php');
+include_once('../template/head.php');//voeg de header to
+include_once('../template/navbar.php');
 
 ?>
 
     <section id="register">
         <div class="information_form">
-            <form name="registration" action="app/helpers/newuser.php" method='POST'>
+            <form name="registration" action="register_handler.php" method='POST'>
                 First name:<input type="text" name="firstname" required="required" placeholder="First name"><br>
                 Last name:<input type="text" name="lastname" required="required" placeholder="Last name" ><br>
                 Username:<input type="text" name="username" required="required" placeholder="username"><br>
@@ -24,4 +24,4 @@ include_once('app/template/navbar.php');
 
 
 
-<?php include_once('app/template/foot.php'); //voegt footer toe
+<?php include_once('../template/foot.php'); //voegt footer toe
