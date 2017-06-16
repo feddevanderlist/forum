@@ -13,7 +13,8 @@ function dbConnect()
 
 
         try {
-            $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $db = new PDO('mysql:host=127.0.0.1;dbname=forum', $username, $password);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $error){
         $db = null;
@@ -22,20 +23,23 @@ function dbConnect()
 return true;
     }
 
-function dbQuery($sql, $params=[])
-    {
+
+function dbQuery($sql, $params = [])
+{
     global $db, $db_statement;
-    if ($db==null)
+
+    if($db == null)
         return false;
-    try{
-        $db_statement= $db->prepare($sql);
+
+    try {
+        $db_statement = $db->prepare($sql);
         $db_statement->execute($params);
-        }
-        catch(PDOException $error){
+    } catch(PDOException $error) {
         return false;
-        };
+    }
+
     return true;
-};
+}
 
 
 function dbGetRows()

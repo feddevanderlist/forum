@@ -5,7 +5,7 @@ include_once('../helpers/helper_functions.php');
 session_start();
 // check if POST is used
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    header('location'.url('/forum/src/index.php'));
+    header('location'.url('forum/src/index.php'));
     exit(0);
 }
 
@@ -32,13 +32,15 @@ $user = dbGetRow();
 if(!empty($user)){
     $_SESSION['user_id']= $user['id'];
     $_SESSION['username']= $user['username'];
+    echo 'test4';
 
-    header('location'.url(''));
+    header('location'. url('index.php'));
     exit(0);
 }
 
 //fail> login form
 else{
-    header('location'.url(''));
+    header('location'. url('login.php'));
+    echo 'test1';
       exit(0);
 }

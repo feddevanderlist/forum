@@ -5,7 +5,7 @@ include_once('../template/navbar.php');
 include('../database/database.php');
 
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
-    header('Location: ' . url('/forum/src'));
+    header('Location: ' . url('forum/src'));
     exit(0);
 }
 $theme_id = $_GET['id'];
@@ -13,7 +13,7 @@ $theme_subject = '';
 
 //check if subject exists
 if(!dbConnect()) {
-    header('Location: ' . url('/forum/src'));
+    header('Location: ' . url('forum/src'));
     exit(0);
 }
 

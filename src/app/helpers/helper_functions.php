@@ -8,7 +8,7 @@ function asset($asset_src)
 
 function url($url)
 {
-    return 'http://' . $_SERVER['HTTP_HOST'].'/'.$url ;
+    return 'http://' . $_SERVER['HTTP_HOST']. '/'. $url ;
 }
 function checklogin()
 {

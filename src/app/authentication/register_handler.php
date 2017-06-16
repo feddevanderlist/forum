@@ -1,7 +1,7 @@
 <?php
 include('../helpers/helper_functions.php');
 include('../database/database.php');
-
+dbConnect();
 
 // Check if script is starterd by our form
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
@@ -33,17 +33,18 @@ if(!dbConnect()){
 
 if($passw==$passw2){
     //save data to db
-
-    dbQuery('INSERT INTO users(username, password, email, first_name, last_name, date_of_birth))
-        VALUES (:username, :password, :email, :first_name, :last_name, :date_of_birth)',
+$sql="INSERT INTO users(username, password, email, first_name, last_name, date_of_birth))
+        VALUES (:username, :password, :email, :firstname, :lastname, :dateofbirth)";
+    dbQuery($sql ,
         [
             ':username' => $username,
             ':email' => $email,
             ':password' => $passw,
-            ':first_name' => $firstname,
-            ':last_name' => $lastname,
-            ':date_of_birth' => $birthdate
+            ':firstname' => $firstname,
+            ':lastname' => $lastname,
+            ':dateofbirth' => $birthdate
         ]);
+    echo 'registered';
     header('location'.url(''));
     exit(0);
 }
@@ -52,4 +53,3 @@ else{
     echo "<br>password not the same";
     die;
 }
-

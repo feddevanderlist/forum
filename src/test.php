@@ -1,2 +1,3 @@
 <?php
-echo dirname(__FILE__);
+include_once('app/database/database.php');
+echo dbConnect();
