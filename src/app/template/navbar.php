@@ -8,18 +8,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">vandalist</a>
+            <a class="navbar-brand" href="<?=url('forum/src/index.php')?>">vandalist</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
             </ul>
+             <?php if(isset($_SESSION['user_id'])&& isset($_SESSION['username'])):        ?>
             <ul class="nav navbar-nav navbar-right">
-                <li ><a href="<?= url('forum/src/app/authentication/register.php')?>">register </a></li>
-                <li><a href="<?= url('forum/src/login.php')?>">login</a></li>
+                <li ><a href="<?= url('forum/src/app/user/profile.php')?>"><?=$_SESSION['username']?> </a></li>
+                <li><a href="<?= url('forum/src/app/authentication/logout.php')?>">logout</a></li>
                 <li class="active"><a href="<?=url('forum/src/index.php')?>">home<span class="sr-only">(current)</span></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+            <?php else: ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="<?= url('forum/src/app/authentication/register.php')?>">register </a></li>
+                <li><a href="<?= url('forum/src/app/authentication/login.php')?>">login</a></li>
+                <li class="active"><a href="<?=url('forum/src/index.php')?>">home<span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<?php endif; ?>

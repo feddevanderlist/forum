@@ -16,6 +16,7 @@
 }
 .subject{
     background-color:darkcyan;
+    color:black;
 }
 
 .description{
@@ -25,4 +26,20 @@
 .created{
     text-align: right;
 }
+.topic{
+    text-align: center;
+}
 
+
+/*//topics specific edits*/
+.comment_container{
+    margin-top:10%;
+}
+
+#comment{
+    margin:1%;
+   border: 1px solid blue;
+}
+.topicinfo{
+    text-align: center;
+}

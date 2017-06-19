@@ -11,7 +11,7 @@
 
     <!-- Bootstrap -->
     <link href="<?= asset('forum/src/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?= asset('forum/src/css/homepage.css') ?>" rel="stylesheet">
+    <link href="<?= asset('forum/src/css/index.css') ?>" rel="stylesheet">
     <link href="<?= asset('forum/src/css/register.css')?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

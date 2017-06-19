@@ -46,10 +46,10 @@ $topics = dbGetRows();
 
     </section>
     <section id="themesubject">
-        <span class="card-title"><?= $theme_subject ?> - Topics</span>
+        <span class="topic"><h1><?= $theme_subject ?> - Topics</h1></span>
     </section>
 <?php foreach ($topics as $topic):?>
-    <a href="app/topics/topics.php?id=<?=$topic['id']?>&subject=<?=$topic['subject']?>"><section class="thread">
+    <a href="./topic.php?id=<?=$topic['id']?>&subject=<?=$topic['subject']?>"><section class="thread">
             <section class="subject"><?=$topic['subject']?>
             </section>
             <section class="description"><?=$topic['description'];?></section>

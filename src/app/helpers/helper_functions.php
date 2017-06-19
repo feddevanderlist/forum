@@ -8,7 +8,7 @@ function asset($asset_src)
 
 function url($url)
 {
-    return 'http://' . $_SERVER['HTTP_HOST']. '/'. $url ;
+    return 'http://' . $_SERVER['HTTP_HOST']. '/'. $url ; //always use 'location: '
 }
 function checklogin()
 {
@@ -17,4 +17,11 @@ function checklogin()
         exit(0);
     }
 }
-?>
+
+
+function DEBUG($var)
+{
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
+}
