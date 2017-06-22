@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 include('../database/database.php');
 include('../helpers/helper_functions.php');
-session_start();
+
 // check if POST is used
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    header('location: '.url('forum/src/index.php'));
+    header('Location: ' . url('forum/src/index.php'));
     exit(0);
 }
 
@@ -15,7 +15,7 @@ $password=sha1($_POST['password']);
 
 // db connect fail->login form
 if(!dbConnect()){
-    header('location: '.url('forum/src/login.php'));
+    header('Location: ' . url('forum/src/app/authentication/login.php'));
     exit(0);
 }
 
@@ -34,13 +34,13 @@ if(!empty($user)){
     $_SESSION['username']= $user['username'];
 
 
-    header('location: '. url('forum/src/index.php'));
+    header('Location: ' . url('forum/src/index.php'));
     exit(0);
 }
 
 //fail> login form
 else{
-    header('location: '. url('login.php'));
+    header('Location: ' . url('forum/src/app/authentication/login.php'));
 
-      exit(0);
+
 }

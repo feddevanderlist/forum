@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fietser1997
- * Date: 19-06-2017
- * Time: 10:42
- */
+session_start();
+include_once ('../helpers/helper_functions.php');
+include_once('../template/head.php');//voeg de header to
+include_once('../template/navbar.php');
+include('../database/database.php');
+

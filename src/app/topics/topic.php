@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once ('../helpers/helper_functions.php');
 include_once('../template/head.php');//voeg de header to
 include_once('../template/navbar.php');
@@ -54,7 +54,7 @@ $replies = dbGetRows();
     </section>
     <section id="topicsubject">
         <span class="topic"><h1><?= $topic_subject ?> </h1></span>
-        <section class="topicinfo"><?= $replies[0]['infotopic']?></section>
+        <section class="topicinfo"><?= $replies['infotopic']?></section>
     </section>
 
 <div class="comment_container">
@@ -67,7 +67,14 @@ $replies = dbGetRows();
             </section>
 <?php endforeach ?>
 </div>
-
+<?php if(checklogin()):?>
+    <form name="newtopi" action="topic_handler.php" method='POST'>
+        Subject:<input type="text" name="subject" required="required" placeholder="Subject"><br>
+        Description:<input type="text" name="description" required="required" placeholder="Description">
+        <input type="hidden" name="theme_id" value="<?=$topic_id?>"> </input>
+        <button type="submit" name="submit" value="send">Create Topic</button>
+    </form>
+<?php endif; ?>
 
 
 <?php include_once('../template/foot.php'); //voegt footer toe

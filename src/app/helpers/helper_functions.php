@@ -12,10 +12,10 @@ function url($url)
 }
 function checklogin()
 {
-    if(!isset($_SESSION['user_id'])) {
-        header('Location: ' . url('app/authentication/login_form.php'));
-        exit(0);
+    if(isset($_SESSION['user_id'])) {
+        return true;
     }
+    return false;
 }
 
 

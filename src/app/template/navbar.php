@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
             </ul>
-             <?php if(isset($_SESSION['user_id'])&& isset($_SESSION['username'])):        ?>
+             <?php if(checklogin()):?>
             <ul class="nav navbar-nav navbar-right">
                 <li ><a href="<?= url('forum/src/app/user/profile.php')?>"><?=$_SESSION['username']?> </a></li>
                 <li><a href="<?= url('forum/src/app/authentication/logout.php')?>">logout</a></li>

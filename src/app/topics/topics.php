@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once ('../helpers/helper_functions.php');
 include_once('../template/head.php');//voeg de header to
 include_once('../template/navbar.php');
@@ -40,6 +41,11 @@ $sql = "SELECT topics.id as id,
         WHERE topics.theme_id = :id";
 dbQuery($sql, [ ':id' => $theme_id]);
 $topics = dbGetRows();
+
+if(isset($_SESSION['user_id'])){
+$sql="SELECT role from users WHERE id= :id";
+dbQuery($sql, [':id' => $_SESSION['user_id']]);
+$admin = dbGetRow();}
 ?>
 
     <section id="ondernavbar">
@@ -58,7 +64,14 @@ $topics = dbGetRows();
             aantal replys:<?=dbcount()?>
         </section></a>
 <?php endforeach ?>
-
+<?php if(checklogin() && $admin['role'] == 1):?>
+    <form name="newtopi" action="topic_handler.php" method='POST'>
+        Subject:<input type="text" name="subject" required="required" placeholder="Subject"><br>
+        Description:<input type="text" name="description" required="required" placeholder="Description">
+        <input type="hidden" name="theme_id" value="<?=$theme_id?>"></input>
+        <button type="submit" name="submit" value="send">Create Topic</button>
+    </form>
+<?php endif; ?>
 
 
 

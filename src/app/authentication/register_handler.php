@@ -4,7 +4,7 @@ include('../database/database.php');
 
 // Check if script is starterd by our form
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    header('location: '.url('forum/src/authentication/register.php'));
+    header('Location: '. url('forum/src/authentication/register.php'));
     exit(0);
 }
 
@@ -25,13 +25,13 @@ $passw2=sha1($_POST['passw2']);
 if(!dbConnect()){
     //de connectie is niet gelukt;
     //dus doorlinken naar de homepage
-    header('location: '.url('forum/src/app/authentication/register.php'));
+    header('Location: '. url('forum/src/app/authentication/register.php'));
     exit(0);
 }
 $sql="SELECT * FROM users WHERE username = :username";
 dbQuery($sql, [':username'=> $username]);
 if(dbCount()>0){
-    header('location: '.url('forum/src/app/authentication/register.php'));
+    header('Location: '. url('forum/src/app/authentication/register.php'));
     echo '<script> alert("username bestaat al")</script>';
     exit(0);
 }
@@ -51,7 +51,7 @@ $sql="INSERT INTO users(username, password, email, first_name, last_name, date_o
             ':dateofbirth' => $birthdate
         ]);
 
-    header('location: '.url('forum/src'));
+    header('Location: '. url('forum/src'));
     exit(0);
 }
 
