@@ -30,31 +30,27 @@ if(!isset($_GET['subject'])) {
 } else {
     $topic_subject = $_GET['subject'];
 }
+dbQuery('SELECT * FROM topics WHERE id = :id', [ ':id' => $topic_id]);
+$topic=dbGetRow();
+$topic_subj= $topic['subject'];
 
-$sql = "SELECT topics.id as id, 
-               topics.subject as subject, 
-               topics.description as infotopic, 
-               topics.created_at as created_at,
-               users.username as username, 
-               replies.id as replies_id,
+$sql = "SELECT users.username as username, 
                replies.content as content,
-               replies.created_at as reply_created,
-               replies.id as reply_id
+               replies.created_at as reply_created
         FROM topics
         INNER JOIN users ON users.id = topics.user_id
         INNER JOIN replies ON replies.topic_id = topics.id
-        WHERE replies.user_id = :id";
+        WHERE replies.topic_id = :id";
 dbQuery($sql, [ ':id' => $topic_id]);
 $replies = dbGetRows();
 
 ?>
-
     <section id="ondernavbar">
 
     </section>
     <section id="topicsubject">
         <span class="topic"><h1><?= $topic_subject ?> </h1></span>
-        <section class="topicinfo"><?= $replies['infotopic']?></section>
+        <section class="topicinfo"><?= $topic_subj?></section>
     </section>
 
 <div class="comment_container">
@@ -68,12 +64,14 @@ $replies = dbGetRows();
 <?php endforeach ?>
 </div>
 <?php if(checklogin()):?>
-    <form name="newtopi" action="topic_handler.php" method='POST'>
-        Subject:<input type="text" name="subject" required="required" placeholder="Subject"><br>
-        Description:<input type="text" name="description" required="required" placeholder="Description">
-        <input type="hidden" name="theme_id" value="<?=$topic_id?>"> </input>
-        <button type="submit" name="submit" value="send">Create Topic</button>
+    <section id="addcontent">
+    <form name="newtopic" action="comment_handler.php" method='POST'>
+
+        Description:<input type="text" name="comment" required="required" placeholder="comment"><br>
+        <input type="hidden" name="topic_id" value="<?=$topic_id?>" > </input>
+        <button type="submit" name="submit" value="send">Place Commend</button>
     </form>
+    </section>
 <?php endif; ?>
 
 

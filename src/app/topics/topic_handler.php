@@ -6,11 +6,16 @@ include('../database/database.php');
 
 // Check if script is starterd by our form
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    header('Location: '. url('forum/src/authentication/register.php'));
+    header('Location: ' . url('forum/src/authentication/register.php'));
     exit(0);
 }
-else{
-    $subject = $_POST['subject'];
+if(!dbConnect()){
+    header('Location: ' . url('forum/src/topics/topics.php'));
+    exit(0);
+}
+
+
+$subject = $_POST['subject'];
     $description = $_POST['description'];
     $userid = $_SESSION['user_id'];
     $themeid = $_POST['theme_id'];
@@ -21,4 +26,4 @@ else{
         ':userid' => $userid,
         ':themeid' => $themeid]);
 
-    header('Location ' . url('forum/src'));}
+    header('Location: ' . url('forum/src'));

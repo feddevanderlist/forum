@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include('../helpers/helper_functions.php');
 include('../database/database.php');
@@ -15,14 +16,13 @@ if(!dbConnect()){
 
 
 
-$subject = $_POST['subject'];
-$description = $_POST['description'];
+$topicid = $_POST['topic_id'];
+$description = $_POST['comment'];
 $userid = $_SESSION['user_id'];
 
+$sql= "INSERT INTO replies(topic_id, content, user_id)  VALUES (:id, :content, :userid)";
+dbQuery($sql, [':id' => $topicid,
+    ':content' => $description,
+    ':userid' => $userid ]);
 
-$sql= "INSERT INTO themes(subject, description, user_id)  VALUES (:subject, :description, :userid)";
-dbQuery($sql, [':subject' => $subject,
-               ':description' => $description,
-               ':userid' => $userid ]);
-
-header('Location: ' . url('forum/src'));
+header('Location: ' . url("forum/src/app/topics/comment.php?id=$topicid"));

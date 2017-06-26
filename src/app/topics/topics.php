@@ -55,7 +55,7 @@ $admin = dbGetRow();}
         <span class="topic"><h1><?= $theme_subject ?> - Topics</h1></span>
     </section>
 <?php foreach ($topics as $topic):?>
-    <a href="./topic.php?id=<?=$topic['id']?>&subject=<?=$topic['subject']?>"><section class="thread">
+    <a href="comment.php?id=<?=$topic['id']?>&subject=<?=$topic['subject']?>"><section class="thread">
             <section class="subject"><?=$topic['subject']?>
             </section>
             <section class="description"><?=$topic['description'];?></section>
@@ -65,12 +65,14 @@ $admin = dbGetRow();}
         </section></a>
 <?php endforeach ?>
 <?php if(checklogin() && $admin['role'] == 1):?>
+    <section id="addcontent">
     <form name="newtopi" action="topic_handler.php" method='POST'>
         Subject:<input type="text" name="subject" required="required" placeholder="Subject"><br>
-        Description:<input type="text" name="description" required="required" placeholder="Description">
+        Description:<input type="text" name="description" required="required" placeholder="Description"><br>
         <input type="hidden" name="theme_id" value="<?=$theme_id?>"></input>
         <button type="submit" name="submit" value="send">Create Topic</button>
     </form>
+    </section>
 <?php endif; ?>
 
 
