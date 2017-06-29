@@ -24,7 +24,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
             <?php else: ?>
             <ul class="nav navbar-nav navbar-right">
                 <li ><a href="<?= url('forum/src/app/authentication/register.php')?>">register </a></li>

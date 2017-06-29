@@ -31,11 +31,15 @@ if(!dbConnect()){
 $sql="SELECT * FROM users WHERE username = :username";
 dbQuery($sql, [':username'=> $username]);
 if(dbCount()>0){
-    header('Location: '. url('forum/src/app/authentication/register.php'));
-    echo '<script> alert("username bestaat al")</script>';
+   header('Location: '. url('forum/src/app/authentication/register.php'));
     exit(0);
 }
-
+$sql="SELECT * FROM users WHERE email = :email";
+dbQuery($sql, [':email'=> $email]);
+if(dbCount()>0){
+   header('Location: '. url('forum/src/app/authentication/register.php'));
+    exit(0);
+}
 
 if($passw==$passw2){
     //save data to db
